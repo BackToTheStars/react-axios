@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
-  const columns=['First', 'Username', 'Email', 'Phone', 'City', 'Website', 'Company'];
+  const columns=['Name', 'Username', 'Email', 'Phone', 'City', 'Website', 'Company'];
 
   const [users, setUsers] = useState([
     {
@@ -53,6 +53,7 @@ function App() {
         setUsers(response.data);
         console.log(response.data);
       });
+
   };
 
   // вывести данные пользователей в таблицу
@@ -80,7 +81,17 @@ function App() {
 
         <tbody>
 
-        {users.map(el => <Row key={el.id} user={el} columns={columns} uuidv4={uuidv4}/>)}
+        {users.map(el => <Row key={el.id}
+                              id={el.id}
+                              name={el.name}
+                              username={el.username}
+                              email={el.email}
+                              phone={el.phone}
+                              city={el.address.city}
+                              website={el.website}
+                              company={el.company.name}
+                              columns={columns}
+                              uuidv4={uuidv4}/>)}
 
         </tbody>
       </table>

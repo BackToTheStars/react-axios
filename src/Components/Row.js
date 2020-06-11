@@ -2,23 +2,33 @@ import React, { useState } from 'react';
 
 
 function Row(props) {
+  // name={el.name}
+  // username={el.username}
+  // email={el.email}
+  // phone={el.phone}
+  // city={el.address.city}
+  // website={el.website}
+  // company={el.company.name}
+  // columns={columns}
+  // uuidv4={uuidv4}
+
+  const userData = [
+    props.id,
+    props.name,
+    props.username,
+    props.email,
+    props.phone,
+    props.city,
+    props.website,
+    props.company
+  ];
 
   // вывести данные пользователей в таблицу - ok
   // возможность добавлять и удалять пользователей
 
   return (
     <tr>
-      <th scope="row">{props.user.id}</th>
-      <td>{props.user.name}</td>
-      <td>{props.user.username}</td>
-      <td>{props.user.email}</td>
-      <td>{props.user.phone}</td>
-      <td>{props.user.address.city}</td>
-      <td>{props.user.website}</td>
-      <td>{props.user.company.name}</td>
-
-      {props.columns.map(el => <th key={props.uuidv4()} scope="col">{el}</th>)}
-
+      {userData.map(el => <td key={props.uuidv4} scope="col">{el}</td>)}
     </tr>
   );
 };
