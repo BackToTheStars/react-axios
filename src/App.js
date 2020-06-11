@@ -10,15 +10,21 @@ function App() {
 
     console.log('Load');
 
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(json => {
-        setUsers(json);
-        }
-      );
+    // fetch('https://jsonplaceholder.typicode.com/users')
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     setUsers(json);
+    //     }
+    //   );
 
-    // axios.get('https://www.rbc.ru')
-    //   .then((response) => console.log(response.data));
+    axios({
+      method: 'get',
+      url: 'https://jsonplaceholder.typicode.com/users',
+    })
+      .then((response) => {
+        setUsers(response.data);
+        console.log(response.data);
+      });
   };
 
   // вывести данные пользователей в таблицу
