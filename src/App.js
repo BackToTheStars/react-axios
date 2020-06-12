@@ -36,7 +36,7 @@ function App() {
 
   const requestHttp = () => {
 
-    console.log('Load');
+    // console.log('Load');
 
     // fetch('https://jsonplaceholder.typicode.com/users')
     //   .then(response => response.json())
@@ -51,13 +51,9 @@ function App() {
     })
       .then((response) => {
         setUsers(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       });
-
   };
-
-  // вывести данные пользователей в таблицу
-  // возможность добавлять и удалять пользователей
 
   return (
     <div>
@@ -71,39 +67,26 @@ function App() {
               onClick={requestHttp}>Load</button>
       <p></p>
       <table className="table">
-
         <thead className="thead-light">
         <tr>
           <th scope="col">#</th>
           {columns.map(el => <th key={uuidv4()} scope="col">{el}</th>)}
         </tr>
         </thead>
-
         <tbody>
-
-        {users.map(el => <Row key={el.id}
-                              id={el.id}
-                              name={el.name}
-                              username={el.username}
-                              email={el.email}
-                              phone={el.phone}
-                              city={el.address.city}
-                              website={el.website}
-                              company={el.company.name}
-                              columns={columns}
-                              uuidv4={uuidv4}/>)}
-
+          {users.map(el => <Row key={el.id}
+                                user={el}
+                                uuidv4={uuidv4}
+          />)}
         </tbody>
       </table>
-      <br />
-      <ul>
-        {
-          users.map(el => <li key={el.id}>{el.name}</li>)        }
-      </ul>
-      <br />
-      <p />
     </div>
   );
 };
 
 export default App;
+
+
+
+// вывести данные пользователей в таблицу
+// возможность добавлять и удалять пользователей
