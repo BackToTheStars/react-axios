@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Cell from './Cell';
 
 
 function Row(props) {
 
-  const userData = [
+  const columns = [ // columns of the table
     props.user.id,
     props.user.name,
     props.user.username,
@@ -16,14 +17,19 @@ function Row(props) {
 
   return (
     <tr>
-      {userData.map((el,i) => <td key={i} scope="col">{el}</td>)}
+      {columns.map((el,i) => <Cell
+        key={i}
+        i={i}             // column #i -----------------
+        data={el}         // data in the cell ----------
+        user={props.user} // user object as it is
+        columns={columns}
+
+      />)}
     </tr>
   );
 };
 
 export default Row;
-
-
 
 
 // вывести данные пользователей в таблицу - ok
