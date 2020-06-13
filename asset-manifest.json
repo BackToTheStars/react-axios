@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/react-axios/static/css/main.5f361e03.chunk.css",
+    "main.js": "/react-axios/static/js/main.e23fdce3.chunk.js",
+    "main.js.map": "/react-axios/static/js/main.e23fdce3.chunk.js.map",
+    "runtime-main.js": "/react-axios/static/js/runtime-main.4769f76c.js",
+    "runtime-main.js.map": "/react-axios/static/js/runtime-main.4769f76c.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/react-axios/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.6a5c14e2.chunk.js": "/react-axios/static/js/2.6a5c14e2.chunk.js",
+    "static/js/2.6a5c14e2.chunk.js.map": "/react-axios/static/js/2.6a5c14e2.chunk.js.map",
+    "index.html": "/react-axios/index.html",
+    "precache-manifest.8a0b827dc8f35204fc66c4f7be88d68f.js": "/react-axios/precache-manifest.8a0b827dc8f35204fc66c4f7be88d68f.js",
+    "service-worker.js": "/react-axios/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/react-axios/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.5f361e03.chunk.css.map": "/react-axios/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.6a5c14e2.chunk.js.LICENSE.txt": "/react-axios/static/js/2.6a5c14e2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4769f76c.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.6a5c14e2.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.e23fdce3.chunk.js"
+  ]
+}
