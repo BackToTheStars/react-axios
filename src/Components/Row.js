@@ -21,7 +21,9 @@ function Row(props) {
         i={i}             // номер передаваемой колонки
         data={el}         // что написать в колонке
         user={props.user} // объект user
-        onTaskSave={props.onTaskSave}
+        onUserSave={props.onUserSave}
+        isAnotherCellEdited={props.isAnotherCellEdited}
+        setIsAnotherCellEdited={props.setIsAnotherCellEdited}
       />)}
     </tr>
   );

@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
+import Row from "./Row";
 
 function Cell(props) {
 
   const [editedUser, setEditedUser] = useState({});
   const [editedField, setEditedField] = useState({});
 
+
   const editMode = (user, i, cellValue) => {
-    setEditedUser(user);
-    setEditedField({index: i, value: cellValue})
+    if (!props.isAnotherCellEdited) {       // блокирует одновременное редактирование другой ячейки
+      setEditedUser(user);
+      setEditedField({index: i, value: cellValue})
+      props.setIsAnotherCellEdited(true);   // блокирует одновременное редактирование другой ячейки
+    };
   }
 
   const onEditCellChange = (e, i) => {
@@ -26,14 +31,15 @@ function Cell(props) {
   }
 
   const cellSave = () => {
-    props.onTaskSave(editedUser);
-    setEditedUser({});
+    props.onUserSave(editedUser);
+    setEditedUser({});  // refactor: можно это всё убрать в cellCancel(), но понимание ухудшится
     setEditedField({});
   };
 
   const cellCancel = () => {
     setEditedUser({});
     setEditedField({});
+    props.setIsAnotherCellEdited(false);  // позволяет снова открыть редактирование другой ячейки
   };
 
   return (
@@ -48,7 +54,7 @@ function Cell(props) {
           <button onClick={cellCancel}>Cancel</button>
         </>
       ) : (
-        <span onClick={() => editMode(props.user, props.i, props.data)}>{props.data}</span>
+        <span onDoubleClick={() => editMode(props.user, props.i, props.data)}>{props.data}</span>
       )}
     </td>
   );

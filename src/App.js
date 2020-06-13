@@ -8,13 +8,15 @@ function App() {
 
   const columns=['Name', 'Username', 'Email', 'Phone', 'City', 'Website', 'Company'];
   const [users, setUsers] = useState([]);
+  const [isAnotherCellEdited, setIsAnotherCellEdited] = useState(false);
 
-  const onTaskSave = (user) => {
+  const onUserSave = (user) => {
     const updatedUsers = users.map((el) => {
       if (el.id === user.id) return {...user};
       else return el;
     });
     setUsers(updatedUsers);
+    setIsAnotherCellEdited(false);        // позволяет снова открыть редактирование другой ячейки
   }
 
   const requestHttp = () => {
@@ -62,7 +64,9 @@ function App() {
             <tbody>
             {users.map(el => <Row key={el.id}
                                   user={el}
-                                  onTaskSave={onTaskSave}
+                                  onUserSave={onUserSave}
+                                  isAnotherCellEdited={isAnotherCellEdited}
+                                  setIsAnotherCellEdited={setIsAnotherCellEdited}
             />)}
             </tbody>
           </table>
