@@ -25,8 +25,13 @@ function Cell(props) {
     setEditedField({index: i, value: e.target.value});
   }
 
-  const userSave = () => {
+  const cellSave = () => {
     props.onTaskSave(editedUser);
+    setEditedUser({});
+    setEditedField({});
+  };
+
+  const cellCancel = () => {
     setEditedUser({});
     setEditedField({});
   };
@@ -39,7 +44,8 @@ function Cell(props) {
                  value={editedField.value}
                  onChange={(e) => onEditCellChange(e, props.i)}
           />
-          <button onClick={userSave} disabled={!editedField.value.trim()}>Save</button>
+          <button onClick={cellSave} disabled={!editedField.value.trim()}>Save</button>
+          <button onClick={cellCancel}>Cancel</button>
         </>
       ) : (
         <span onClick={() => editMode(props.user, props.i, props.data)}>{props.data}</span>
