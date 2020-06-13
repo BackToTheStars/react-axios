@@ -7,8 +7,15 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
 
   const columns=['Name', 'Username', 'Email', 'Phone', 'City', 'Website', 'Company'];
-
   const [users, setUsers] = useState([]);
+
+  const onTaskSave = (user) => {
+    const updatedUsers = users.map((el) => {
+      if (el.id === user.id) return {...user};
+      else return el;
+    });
+    setUsers(updatedUsers);
+  }
 
   const requestHttp = () => {
 
@@ -53,18 +60,18 @@ function App() {
             </tr>
             </thead>
             <tbody>
-              {users.map(el => <Row key={el.id}
-                                    user={el}
-                                    uuidv4={uuidv4}
-              />)}
+            {users.map(el => <Row key={el.id}
+                                  user={el}
+                                  onTaskSave={onTaskSave}
+            />)}
             </tbody>
           </table>
         </>
-        ) : (
+      ) : (
         <>
           <p className="ml-2">No data loaded yet - please press "Load"</p>
         </>
-        )}
+      )}
     </div>
   );
 };
@@ -74,4 +81,4 @@ export default App;
 
 
 // вывести данные пользователей в таблицу
-// возможность добавлять и удалять пользователей
+// возможность добавлять и удалять пользователей// возможность добавлять и удалять пользователей

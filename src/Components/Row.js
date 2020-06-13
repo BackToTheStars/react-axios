@@ -1,7 +1,6 @@
 import React from 'react';
 import Cell from './Cell';
 
-
 function Row(props) {
 
   const columns = [ // columns of the table
@@ -19,11 +18,10 @@ function Row(props) {
     <tr>
       {columns.map((el,i) => <Cell
         key={i}
-        i={i}             // column #i -----------------
-        data={el}         // data in the cell ----------
-        user={props.user} // user object as it is
-        columns={columns}
-
+        i={i}             // номер передаваемой колонки
+        data={el}         // что написать в колонке
+        user={props.user} // объект user
+        onTaskSave={props.onTaskSave}
       />)}
     </tr>
   );
@@ -33,4 +31,4 @@ export default Row;
 
 
 // вывести данные пользователей в таблицу - ok
-// возможность добавлять и удалять пользователей
+// возможность добавлять и удалять пользователей// возможность добавлять и удалять пользователей
