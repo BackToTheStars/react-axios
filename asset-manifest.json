@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/react-axios/static/css/main.5f361e03.chunk.css",
-    "main.js": "/react-axios/static/js/main.855602f2.chunk.js",
-    "main.js.map": "/react-axios/static/js/main.855602f2.chunk.js.map",
+    "main.css": "/react-axios/static/css/main.960b574d.chunk.css",
+    "main.js": "/react-axios/static/js/main.3cc61ad1.chunk.js",
+    "main.js.map": "/react-axios/static/js/main.3cc61ad1.chunk.js.map",
     "runtime-main.js": "/react-axios/static/js/runtime-main.4769f76c.js",
     "runtime-main.js.map": "/react-axios/static/js/runtime-main.4769f76c.js.map",
     "static/css/2.af3c1da9.chunk.css": "/react-axios/static/css/2.af3c1da9.chunk.css",
     "static/js/2.6a5c14e2.chunk.js": "/react-axios/static/js/2.6a5c14e2.chunk.js",
     "static/js/2.6a5c14e2.chunk.js.map": "/react-axios/static/js/2.6a5c14e2.chunk.js.map",
     "index.html": "/react-axios/index.html",
-    "precache-manifest.bcb0f183ac58568c7fb844415c3431d6.js": "/react-axios/precache-manifest.bcb0f183ac58568c7fb844415c3431d6.js",
+    "precache-manifest.994c28829ac48fc5c6ae3b5e4b4d3324.js": "/react-axios/precache-manifest.994c28829ac48fc5c6ae3b5e4b4d3324.js",
     "service-worker.js": "/react-axios/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/react-axios/static/css/2.af3c1da9.chunk.css.map",
-    "static/css/main.5f361e03.chunk.css.map": "/react-axios/static/css/main.5f361e03.chunk.css.map",
+    "static/css/main.960b574d.chunk.css.map": "/react-axios/static/css/main.960b574d.chunk.css.map",
     "static/js/2.6a5c14e2.chunk.js.LICENSE.txt": "/react-axios/static/js/2.6a5c14e2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4769f76c.js",
     "static/css/2.af3c1da9.chunk.css",
     "static/js/2.6a5c14e2.chunk.js",
-    "static/css/main.5f361e03.chunk.css",
-    "static/js/main.855602f2.chunk.js"
+    "static/css/main.960b574d.chunk.css",
+    "static/js/main.3cc61ad1.chunk.js"
   ]
 }
