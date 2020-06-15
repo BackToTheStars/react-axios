@@ -83,7 +83,8 @@ function App() {
 
     axios({
       method: "get",
-      url: "https://jsonplaceholder.typicode.com/users",
+      url:
+        "https://cors-anywhere.herokuapp.com/https://jsonplaceholder.typicode.com/users",
     }).then((response) => {
       setUsers(response.data);
       setIsSpinnerShown(false);
