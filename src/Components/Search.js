@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 function Search(props) {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
-  const searchFieldChanged = (event, index) => {
-    event.preventDefault();
-    setSearchValue(event.target.value);
-    props.searchSave(event.target.value, index);
+  const searchFieldChanged = (e) => {
+    setSearchValue(e.target.value);
+    props.searchSave(searchValue, props.i);
   };
 
   return (
@@ -14,7 +13,7 @@ function Search(props) {
       className="form-control form-control-sm" // Search fields
       type="text"
       placeholder="filter..."
-      onChange={(e) => searchFieldChanged(e, props.i)}
+      onChange={searchFieldChanged}
       value={searchValue}
     />
   );
