@@ -41,16 +41,6 @@ function App() {
 
   const requestHttp = () => {
     setIsSpinnerShown(true);
-
-    // console.log('Load');
-
-    // fetch('https://jsonplaceholder.typicode.com/users')
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     setUsers(json);
-    //     }
-    //   );
-
     axios({
       method: "get",
       url:
@@ -65,6 +55,45 @@ function App() {
         console.log(error);
       });
   };
+
+  // ************* Infinite scroll adder
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleScroll = () => {
+    const innerHeight = window.innerHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const offsetHeight = document.documentElement.offsetHeight;
+    if (innerHeight + scrollTop < offsetHeight - 100) return;
+    setIsLoading(true);
+  };
+
+  useEffect(() => {
+    if (!isLoading) return;
+    getMoreData();
+  }, [isLoading]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
+  const getMoreData = () => {
+    setIsLoading(true);
+    axios({
+      method: "get",
+      url: "https://jsonplaceholder.typicode.com/users",
+    })
+      .then((response) => {
+        setUsers([...users, ...response.data]);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // *********  End of Infinite scroll adder
 
   return (
     <div>
@@ -110,7 +139,7 @@ function App() {
             <tbody>
               {users.map((el) => (
                 <Row
-                  key={el.id}
+                  key={uuidv4()}
                   user={el}
                   onUserSave={onUserSave}
                   isAnotherCellEdited={isAnotherCellEdited}
@@ -153,3 +182,12 @@ export default App;
 //     />
 //   </svg>
 // );
+
+// console.log('Load');
+
+// fetch('https://jsonplaceholder.typicode.com/users')
+//   .then(response => response.json())
+//   .then(json => {
+//     setUsers(json);
+//     }
+//   );
