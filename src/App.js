@@ -60,7 +60,7 @@ function App() {
       .then((response) => {
         setUsers(response.data);
         setIsSpinnerShown(false);
-        handleScroll();
+        handleScroll(); // сразу запускаем проверку, находится ли низ таблицы внизу страницы.
       })
       .catch((error) => {
         console.log(error);
