@@ -83,7 +83,7 @@ function App() {
         ", offsetHeight=" +
         offsetHeight
     );
-    if (innerHeight + scrollTop < offsetHeight - 1000) return;
+    if (innerHeight + scrollTop < offsetHeight - 100) return;
     setIsLoading(true);
   };
 
