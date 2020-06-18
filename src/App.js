@@ -3,7 +3,7 @@ import "./App.css";
 import axios from "axios";
 import Row from "./Components/Row";
 import Search from "./Components/Search";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const columns = [
@@ -65,6 +65,49 @@ function App() {
         console.log(error);
       });
   };
+
+  // ************* Infinite scroll adder
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleScroll = () => {
+    const innerHeight = window.innerHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const offsetHeight = document.documentElement.offsetHeight;
+    if (innerHeight + scrollTop < offsetHeight - 100) return;
+    setIsLoading(true);
+  };
+
+  useEffect(() => {
+    if (!isLoading) return;
+    getMoreData();
+  }, [isLoading]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
+  const getMoreData = () => {
+    setIsLoading(true);
+    axios({
+      method: "get",
+      url: "https://jsonplaceholder.typicode.com/users",
+    })
+      .then((response) => {
+        let cloneUsers = [...users, ...response.data];
+        cloneUsers = cloneUsers.map((el, i) => {
+          return { ...el, id: i };
+        });
+        setUsers(cloneUsers);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // *********  End of Infinite scroll adder
 
   return (
     <div>
