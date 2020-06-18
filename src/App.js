@@ -60,6 +60,7 @@ function App() {
       .then((response) => {
         setUsers(response.data);
         setIsSpinnerShown(false);
+        handleScroll();
       })
       .catch((error) => {
         console.log(error);
@@ -72,9 +73,17 @@ function App() {
 
   const handleScroll = () => {
     const innerHeight = window.innerHeight;
-    const scrollTop = document.documentElement.scrollTop;
+    const scrollTop = Math.round(document.documentElement.scrollTop);
     const offsetHeight = document.documentElement.offsetHeight;
-    if (innerHeight + scrollTop < offsetHeight - 100) return;
+    console.log(
+      "innerHeight=" +
+        innerHeight +
+        ", scrollTop=" +
+        scrollTop +
+        ", offsetHeight=" +
+        offsetHeight
+    );
+    if (innerHeight + scrollTop < offsetHeight - 1000) return;
     setIsLoading(true);
   };
 
@@ -97,7 +106,7 @@ function App() {
       .then((response) => {
         let cloneUsers = [...users, ...response.data];
         cloneUsers = cloneUsers.map((el, i) => {
-          return { ...el, id: i };
+          return { ...el, id: i + 1 };
         });
         setUsers(cloneUsers);
         setIsLoading(false);
