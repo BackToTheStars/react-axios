@@ -18,15 +18,22 @@ function App() {
   const [users, setUsers] = useState([]);
   const [isAnotherCellEdited, setIsAnotherCellEdited] = useState(false);
   const [isSpinnerShown, setIsSpinnerShown] = useState(false);
-  const [searchFieldsArray, setSearchFieldsArray] = useState([]);
+  const [filters, setFilters] = useState({
+    name: "",
+    username: "",
+    email: "",
+    phone: "",
+    city: "",
+    website: "",
+    company: "",
+  });
 
-  const searchSave = (searchString, index) => {
-    // for <Search> component
-    const cloneArr = [...searchFieldsArray];
-    cloneArr[index] = searchString;
-    setSearchFieldsArray(cloneArr);
-    console.log(cloneArr);
-    // setSearchFieldsArray(cloneArr); // вот эта строка рождает проблему сброса всех значений search
+  // for <Search> component
+  const searchSave = (value, i) => {
+    const updatedFilters = { ...filters };
+    updatedFilters[columns[i].toLowerCase()] = value;
+    setFilters(updatedFilters);
+    console.log(updatedFilters);
   };
 
   const onUserSave = (user) => {
@@ -41,16 +48,6 @@ function App() {
 
   const requestHttp = () => {
     setIsSpinnerShown(true);
-
-    // console.log('Load');
-
-    // fetch('https://jsonplaceholder.typicode.com/users')
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     setUsers(json);
-    //     }
-    //   );
-
     axios({
       method: "get",
       url:
@@ -75,14 +72,6 @@ function App() {
     const innerHeight = window.innerHeight;
     const scrollTop = Math.round(document.documentElement.scrollTop);
     const offsetHeight = document.documentElement.offsetHeight;
-    console.log(
-      "innerHeight=" +
-        innerHeight +
-        ", scrollTop=" +
-        scrollTop +
-        ", offsetHeight=" +
-        offsetHeight
-    );
     if (innerHeight + scrollTop < offsetHeight - 100) return;
     setIsLoading(true);
   };
@@ -149,12 +138,6 @@ function App() {
                   <th key={i} scope="col">
                     {el}
                     <Search i={i} searchSave={searchSave} />
-                    {/*🔍*/}
-                    {/*<div className="line">*/}
-                    {/*  <input className="search"*/}
-                    {/*         value="search">{null}</input>*/}
-                    {/*  <span className="search ml-1">{searchIcon}</span>*/}
-                    {/*</div>*/}
                   </th>
                 ))}
               </tr>
@@ -205,3 +188,28 @@ export default App;
 //     />
 //   </svg>
 // );
+
+// console.log(
+//   "innerHeight=" +
+//     innerHeight +
+//     ", scrollTop=" +
+//     scrollTop +
+//     ", offsetHeight=" +
+//     offsetHeight
+// );
+
+// console.log('Load');
+
+// fetch('https://jsonplaceholder.typicode.com/users')
+//   .then(response => response.json())
+//   .then(json => {
+//     setUsers(json);
+//     }
+//   );
+
+// {/*🔍*/}
+// {/*<div className="line">*/}
+// {/*  <input className="search"*/}
+// {/*         value="search">{null}</input>*/}
+// {/*  <span className="search ml-1">{searchIcon}</span>*/}
+// {/*</div>*/}
