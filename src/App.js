@@ -16,8 +16,10 @@ function App() {
     "Company",
   ];
   const [users, setUsers] = useState([]);
+  const [list, setList] = useState(users);
   const [isAnotherCellEdited, setIsAnotherCellEdited] = useState(false);
   const [isSpinnerShown, setIsSpinnerShown] = useState(false);
+
   const [filters, setFilters] = useState({
     name: "",
     username: "",
@@ -33,8 +35,43 @@ function App() {
     const updatedFilters = { ...filters };
     updatedFilters[columns[i].toLowerCase()] = value;
     setFilters(updatedFilters);
+    setList(
+      users.filter((el) => {
+        return (
+          el.name.toLowerCase().includes(updatedFilters.name.toLowerCase()) &&
+          el.username
+            .toLowerCase()
+            .includes(updatedFilters.username.toLowerCase()) &&
+          el.email.toLowerCase().includes(updatedFilters.email.toLowerCase()) &&
+          el.phone.toLowerCase().includes(updatedFilters.phone.toLowerCase()) &&
+          el.address.city
+            .toLowerCase()
+            .includes(updatedFilters.city.toLowerCase()) &&
+          el.website
+            .toLowerCase()
+            .includes(updatedFilters.website.toLowerCase()) &&
+          el.company.name
+            .toLowerCase()
+            .includes(updatedFilters.company.toLowerCase())
+        );
+      })
+    );
     console.log(updatedFilters);
   };
+
+  const resetFilters = () => {
+    setFilters({
+      name: "",
+      username: "",
+      email: "",
+      phone: "",
+      city: "",
+      website: "",
+      company: "",
+    });
+  };
+
+  // ******* end for <Search /> component
 
   const onUserSave = (user) => {
     const updatedUsers = users.map((el) => {
@@ -130,6 +167,9 @@ function App() {
       <p></p>
       {users[0] ? (
         <>
+          <button className="btn btn-secondary ml-2" onClick={resetFilters}>
+            Reset filters
+          </button>
           <table className="table">
             <thead className="thead-light">
               <tr>
