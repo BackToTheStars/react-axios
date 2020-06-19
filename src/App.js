@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Row from "./Components/Row";
-import Search from "./Components/Search";
+// import Search from "./Components/Search";
 // import { v4 as uuidv4 } from "uuid";
 
 function App() {
@@ -16,7 +16,6 @@ function App() {
     "Company",
   ];
   const [users, setUsers] = useState([]);
-  const [list, setList] = useState(users);
   const [isAnotherCellEdited, setIsAnotherCellEdited] = useState(false);
   const [isSpinnerShown, setIsSpinnerShown] = useState(false);
 
@@ -31,10 +30,14 @@ function App() {
   });
 
   // for <Search> component
+  const [list, setList] = useState(users);
+
   const searchSave = (value, i) => {
     const updatedFilters = { ...filters };
+
     updatedFilters[columns[i].toLowerCase()] = value;
     setFilters(updatedFilters);
+
     setList(
       users.filter((el) => {
         return (
@@ -57,6 +60,7 @@ function App() {
       })
     );
     console.log(updatedFilters);
+    console.log(list);
   };
 
   const resetFilters = () => {
@@ -69,6 +73,7 @@ function App() {
       website: "",
       company: "",
     });
+    setList(users);
   };
 
   // ******* end for <Search /> component
@@ -80,7 +85,9 @@ function App() {
       else return el;
     });
     setUsers(updatedUsers); // залить новый список users в State
+    setList(updatedUsers); // для Search
     setIsAnotherCellEdited(false); // позволяет снова открыть редактирование другой ячейки
+    searchSave();
   };
 
   const requestHttp = () => {
@@ -93,6 +100,7 @@ function App() {
     })
       .then((response) => {
         setUsers(response.data);
+        setList(response.data); // для Search
         setIsSpinnerShown(false);
         handleScroll(); // сразу запускаем проверку, находится ли низ таблицы внизу страницы.
       })
@@ -135,6 +143,7 @@ function App() {
           return { ...el, id: i + 1 };
         });
         setUsers(cloneUsers);
+        setList(cloneUsers); // **************** для Search
         setIsLoading(false);
       })
       .catch((error) => {
@@ -167,7 +176,10 @@ function App() {
       <p></p>
       {users[0] ? (
         <>
-          <button className="btn btn-secondary ml-2" onClick={resetFilters}>
+          <button
+            className="btn btn-secondary ml-2 mb-3"
+            onClick={resetFilters}
+          >
             Reset filters
           </button>
           <table className="table">
@@ -177,13 +189,26 @@ function App() {
                 {columns.map((el, i) => (
                   <th key={i} scope="col">
                     {el}
-                    <Search i={i} searchSave={searchSave} />
+                    {/*<Search*/}
+                    {/*  i={i}*/}
+                    {/*  searchSave={searchSave}*/}
+                    {/*  resetSearch={resetSearch}*/}
+                    {/*  setResetSearch={setResetSearch}*/}
+                    {/*/>*/}
+                    <input
+                      className="form-control form-control-sm" // Search fields
+                      type="text"
+                      placeholder="filter..."
+                      onChange={(e) => searchSave(e.target.value, i)}
+                      value={filters[columns[i].toLowerCase()]}
+                    />
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {users.map((el) => (
+              {/*{users.map((el) => (*/}
+              {list.map((el) => (
                 <Row
                   key={el.id}
                   user={el}
